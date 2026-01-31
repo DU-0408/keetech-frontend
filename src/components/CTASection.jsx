@@ -64,13 +64,13 @@ const CTASection = () => {
             <span className="font-medium">+91 98874 00555</span>
           </a>
           <a
-            href="mailto:info@keetchelevators.com"
+            href="mailto:keetchelevator@gmail.com"
             className="flex items-center justify-center gap-3 text-muted-foreground hover:text-primary transition-colors"
           >
             <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
               <Mail className="w-5 h-5" />
             </div>
-            <span className="font-medium">info@keetchelevators.com</span>
+            <span className="font-medium">keetchelevator@gmail.com</span>
           </a>
         </div>
       </div>

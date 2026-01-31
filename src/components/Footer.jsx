@@ -75,9 +75,9 @@ const Footer = ({ extraMobilePadding = false }) => {
                 <Phone className="w-5 h-5" />
                 <span>+91 98874 00555</span>
               </a>
-              <a href="mailto:info@keetchelevators.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+              <a href="mailto:keetchelevator@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-5 h-5" />
-                <span>info@keetchelevators.com</span>
+                <span>keetchelevator@gmail.com</span>
               </a>
               <a 
                 href="https://www.google.com/maps?q=26.911477434723604,75.69891063111433" 

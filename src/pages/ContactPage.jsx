@@ -58,8 +58,8 @@ const ContactPage = () => {
     {
       icon: Mail,
       title: 'Email',
-      details: ['info@keetchelevators.com', 'support@keetchelevators.com'],
-      action: 'mailto:info@keetchelevators.com'
+      details: ['keetchelevator@gmail.com'],
+      action: 'mailto:keetchelevator@gmail.com'
     },
     {
       icon: MapPin,
