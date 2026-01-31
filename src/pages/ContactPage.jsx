@@ -88,7 +88,7 @@ const ContactPage = () => {
     const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api/contact';
 
     try {
-      const response = await axios.post(API_URL, formData, {
+      const response = await axios.post(`${API_URL}/api/contact`, formData, {
         headers: {
           'Content-Type': 'application/json',
         },

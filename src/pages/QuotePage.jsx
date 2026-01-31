@@ -51,7 +51,7 @@ const QuotePage = () => {
     const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api/quote';
 
     try {
-      const response = await axios.post(API_URL, formData, {
+      const response = await axios.post(`${API_URL}/api/quote`, formData, {
         headers: {
           'Content-Type': 'application/json',
         },
