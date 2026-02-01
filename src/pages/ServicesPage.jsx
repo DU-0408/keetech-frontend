@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LiveChat from '../components/LiveChat';
 import ScrollToTopButton from '../components/ScrollToTopButton';
+import SEO, { seoData } from '../components/SEO';
 import { services } from '../data/mock';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -27,6 +28,7 @@ const serviceImages = {
 const ServicesPage = () => {
   return (
     <div className="min-h-screen">
+      <SEO {...seoData.services} />
       <Header />
       <main className="pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">
@@ -86,7 +88,7 @@ const ServicesPage = () => {
                         {serviceImages[service.title] ? (
                           <img 
                             src={serviceImages[service.title]} 
-                            alt={service.title}
+                            alt={`${service.title} service by KEE-Tech Elevators - ${service.description.substring(0, 50)}...`}
                             className="w-full h-full object-cover"
                           />
                         ) : (

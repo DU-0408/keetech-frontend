@@ -62,7 +62,7 @@ const ProjectsSection = ({ limit = 6, noPadding = false }) => {
               <div className="img-zoom aspect-[4/3] relative">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`${project.title} - ${project.category} elevator installation by KEE-Tech Elevators in ${project.location}`}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -112,7 +112,7 @@ const ProjectsSection = ({ limit = 6, noPadding = false }) => {
                   <div className="aspect-video rounded-xl overflow-hidden">
                     <img
                       src={selectedProject.image}
-                      alt={selectedProject.title}
+                      alt={`${selectedProject.title} - ${selectedProject.category} elevator project by KEE-Tech Elevators`}
                       className="w-full h-full object-cover"
                     />
                   </div>

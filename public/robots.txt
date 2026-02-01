@@ -1,0 +1,14 @@
+# robots.txt for KEE-Tech Elevators
+# https://keetchelevators.com
+
+User-agent: *
+Allow: /
+
+# Disallow portal/admin areas
+Disallow: /portal/
+
+# Sitemap location
+Sitemap: https://keetchelevators.com/sitemap.xml
+
+# Crawl-delay (optional, uncomment if needed)
+# Crawl-delay: 10

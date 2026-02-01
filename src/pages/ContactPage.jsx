@@ -10,6 +10,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
 import axios from 'axios';
+import SEO, { seoData } from '../components/SEO';
 
 // Company location coordinates (latitude, longitude)
 const COMPANY_LOCATION = {
@@ -118,6 +119,7 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO {...seoData.contact} />
       <Header />
       <main className="pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-6">

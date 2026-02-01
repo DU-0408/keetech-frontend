@@ -10,11 +10,13 @@ import CTASection from '../components/CTASection';
 import Footer from '../components/Footer';
 import LiveChat from '../components/LiveChat';
 import ScrollToTopButton from '../components/ScrollToTopButton';
+import SEO, { seoData } from '../components/SEO';
 import { Phone } from 'lucide-react';
 
 const HomePage = () => {
   return (
     <div className="min-h-screen">
+      <SEO {...seoData.home} />
       <Header />
       <main>
         <HeroSection />

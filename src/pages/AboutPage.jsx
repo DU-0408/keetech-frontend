@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import LiveChat from '../components/LiveChat';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import AboutSection from '../components/AboutSection';
+import SEO, { seoData } from '../components/SEO';
 import { companyInfo } from '../data/mock';
 import { Card, CardContent } from '../components/ui/card';
 import { Award, Users, Building, Calendar } from 'lucide-react';
@@ -27,6 +28,7 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO {...seoData.about} />
       <Header />
       <main className="pt-32">
         {/* Hero Section */}

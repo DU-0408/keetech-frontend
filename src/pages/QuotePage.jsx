@@ -17,6 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { CheckCircle2, ArrowRight, Building2, FileText, Calendar } from 'lucide-react';
 import { toast } from 'sonner';
 import axios from 'axios';
+import SEO, { seoData } from '../components/SEO';
 
 const QuotePage = () => {
   const [formData, setFormData] = useState({
@@ -87,6 +88,7 @@ const QuotePage = () => {
   if (isSubmitted) {
     return (
       <div className="min-h-screen">
+        <SEO {...seoData.quote} />
         <Header />
         <main className="pt-32 pb-20">
           <div className="max-w-2xl mx-auto px-6 text-center">
@@ -128,6 +130,7 @@ const QuotePage = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO {...seoData.quote} />
       <Header />
       <main className="pt-32 pb-20">
         <div className="max-w-5xl mx-auto px-6">
