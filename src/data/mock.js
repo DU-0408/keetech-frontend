@@ -111,39 +111,39 @@ export const projects = [
 export const testimonials = [
   {
     id: 1,
-    name: "Sarah Mitchell",
-    role: "Property Manager",
-    company: "Skyline Properties",
+    name: "Dharmendra Chhabra",
+    role: "Owner",
+    company: "Chhabra Restaurant",
     content: "KEE-Tech Elevators transformed our building's vertical transportation. Their attention to detail and professional service exceeded our expectations.",
     rating: 5,
-    avatar: "SM"
+    avatar: "DC"
   },
   {
     id: 2,
-    name: "James Chen",
-    role: "Facilities Director",
-    company: "Metro Healthcare",
-    content: "The team's expertise in hospital elevator systems is unmatched. They understood our unique requirements and delivered flawlessly.",
+    name: "Prakash Yadav",
+    role: "Owner",
+    company: "Bidla Sons Tower",
+    content: "The team's expertise in commercial elevator systems is unmatched. They understood our unique requirements and delivered flawlessly.",
     rating: 5,
-    avatar: "JC"
+    avatar: "PY"
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    role: "Architect",
-    company: "Modern Design Studio",
-    content: "Working with KEE-Tech Elevators on custom elevator designs has been a pleasure. They bring creative solutions to every project.",
+    name: "Lakhan Agarwal",
+    role: "Owner",
+    company: "Manak Motors",
+    content: "Working with KEE-Tech Elevators on our elevator installation has been a pleasure. They bring creative solutions to every project.",
     rating: 5,
-    avatar: "ER"
+    avatar: "LA"
   },
   {
     id: 4,
-    name: "Michael Thompson",
-    role: "Building Owner",
-    company: "Thompson Realty",
+    name: "Gopal Sharma",
+    role: "Owner",
+    company: "Mahanagar Times",
     content: "Their maintenance program has kept our elevators running perfectly for years. Responsive, reliable, and professional.",
     rating: 5,
-    avatar: "MT"
+    avatar: "GS"
   }
 ];
 
