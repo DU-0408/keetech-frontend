@@ -140,7 +140,7 @@ export const testimonials = [
     id: 4,
     name: "Gopal Sharma",
     role: "Owner",
-    company: "Mahanagar Time",
+    company: "Mahanagar Times",
     content: "Their maintenance program has kept our elevators running perfectly for years. Responsive, reliable, and professional.",
     rating: 5,
     avatar: "GS"
