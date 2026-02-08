@@ -36,7 +36,13 @@ jobs:
       
       - name: Trigger CD webhook
         run: |
+          PAYLOAD='{"after":"'"${{ github.sha }}"'"}'
+
+          SIGNATURE=$(echo -n "$PAYLOAD" | \
+            openssl dgst -sha256 -hmac "${{ secrets.WEBHOOK_SECRET }}" | \
+            sed 's/^.* //')
+            
           curl -X POST https://keetech-webhook.udhomelab.dpdns.org/deploy \
             -H "Content-Type: application/json" \
-            -H "X-Hub-Signature-256: sha256=$(echo -n '{}' | openssl dgst -sha256 -hmac '${{ secrets.WEBHOOK_SECRET }}' | sed 's/^.* //')" \
-            -d '{"after":"'"${{ github.sha }}"'"}'
+            -H "X-Hub-Signature-256: sha256=$SIGNATURE" \
+            -d "$PAYLOAD"
