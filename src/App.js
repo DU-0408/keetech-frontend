@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "./components/ui/sonner";
 import ScrollToTop from "./components/ScrollToTop";
+import ElevatorLoader from "./components/ElevatorLoader";
 
 // Pages
 import HomePage from "./pages/HomePage";
@@ -17,8 +18,15 @@ import PortalDashboard from "./pages/PortalDashboard";
 import ComingSoonPage from "./pages/ComingSoonPage";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
   return (
     <div className="App"> 
+      {isLoading && <ElevatorLoader onLoadingComplete={handleLoadingComplete} />}
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
