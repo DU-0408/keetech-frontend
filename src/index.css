@@ -778,44 +778,34 @@ img.logo-image {
 @media (max-width: 640px) {
   .el-cop {
     right: 12px;
-    top: auto;
-    bottom: 24px;
-    transform: none;
+    left: auto;
+    top: 65%;
+    bottom: auto;
+    transform: translateY(-50%);
   }
 
   .el-cop--hide {
-    transform: translateX(10px);
+    opacity: 0;
+    transform: translateY(-50%) translateX(10px);
   }
 
   .el-cop__panel {
-    padding: 10px 8px;
+    padding: 12px 10px;
     min-width: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .el-cop__buttons {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 6px;
+    gap: 5px;
   }
 
   .el-cop__btn {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   .el-cop__btn-num {
-    font-size: 0.6rem;
-  }
-
-  .el-cop__emergency {
-    padding-top: 0;
-    border-top: none;
-    border-left: 1px solid hsl(var(--border));
-    padding-left: 8px;
-    width: auto;
+    font-size: 0.55rem;
   }
 
   .el-cop__brand {
