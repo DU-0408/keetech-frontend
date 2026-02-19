@@ -302,3 +302,513 @@ img.logo-image {
   z-index: 1;
   pointer-events: none;
 }
+
+/* ========================================= */
+/* ===== Elevator Loader — Door + COP ===== */
+/* ========================================= */
+
+/* --- Root container --- */
+.el-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: opacity 0.7s ease;
+  overflow: hidden;
+}
+
+.el-loader--exit {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Ambient radial glow behind the scene */
+.el-loader__ambient {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    hsl(var(--primary) / 0.06) 0%,
+    transparent 70%
+  );
+  animation: ambientPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* --- Main scene layout --- */
+.el-loader__scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 1;
+}
+
+/* ================================ */
+/* ===== Elevator Door Frame ===== */
+/* ================================ */
+
+.el-door-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Floor indicator above doors */
+.el-door-frame__indicator {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.el-door-frame__indicator--hide {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+.el-door-frame__indicator-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 20px;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  box-shadow: 0 2px 12px hsl(var(--primary) / 0.1);
+}
+
+.el-door-frame__arrow {
+  font-size: 1rem;
+  color: hsl(var(--primary));
+  animation: arrowBlink 0.7s ease-in-out infinite;
+}
+
+.el-door-frame__arrow--arrived {
+  animation: arrivedPulse 0.6s ease-in-out 3;
+}
+
+@keyframes arrowBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes arrivedPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.el-door-frame__floor-num {
+  font-family: 'Inter', monospace;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: hsl(var(--primary));
+  text-shadow: 0 0 12px hsl(var(--primary) / 0.3);
+  min-width: 2ch;
+  text-align: center;
+}
+
+/* ==================== */
+/* ===== The Doors ==== */
+/* ==================== */
+
+.el-doors {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.el-door {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Frosted glass — translucent so website shows through */
+.el-door__glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    hsl(var(--background) / 0.55) 0%,
+    hsl(var(--background) / 0.4) 50%,
+    hsl(var(--background) / 0.5) 100%
+  );
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.dark .el-door__glass {
+  background: linear-gradient(
+    180deg,
+    hsl(0 0% 5% / 0.6) 0%,
+    hsl(0 0% 3% / 0.45) 50%,
+    hsl(0 0% 7% / 0.55) 100%
+  );
+}
+
+/* Frost overlay texture */
+.el-door__frost {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      hsl(var(--foreground) / 0.015) 0px,
+      transparent 1px,
+      transparent 3px
+    );
+  pointer-events: none;
+}
+
+/* Diagonal light reflection sweep */
+.el-door__reflection {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    hsl(0 0% 100% / 0.08) 45%,
+    hsl(0 0% 100% / 0.12) 50%,
+    hsl(0 0% 100% / 0.08) 55%,
+    transparent 60%
+  );
+  animation: reflectionSweep 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dark .el-door__reflection {
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    hsl(0 0% 100% / 0.04) 45%,
+    hsl(0 0% 100% / 0.07) 50%,
+    hsl(0 0% 100% / 0.04) 55%,
+    transparent 60%
+  );
+}
+
+@keyframes reflectionSweep {
+  0% { transform: translateX(-30%) translateY(-30%); }
+  50% { transform: translateX(30%) translateY(30%); }
+  100% { transform: translateX(-30%) translateY(-30%); }
+}
+
+/* Welcome text — split across both doors at the hyphen */
+.el-door__text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  z-index: 4;
+  pointer-events: none;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: hsl(var(--foreground) / 0.7);
+  text-shadow: 0 1px 8px hsl(var(--background) / 0.5);
+}
+
+/* Left door: text flush to right edge + trailing half-hyphen */
+.el-door__text--left {
+  right: 0;
+}
+
+.el-door__text--left::after {
+  content: '-';
+  display: inline-block;
+  clip-path: inset(0 50% 0 0);
+  margin-right: -0.3em;
+}
+
+/* Right door: text flush to left edge + leading half-hyphen */
+.el-door__text--right {
+  left: 0;
+}
+
+.el-door__text--right::before {
+  content: '-';
+  display: inline-block;
+  clip-path: inset(0 0 0 50%);
+  margin-left: -0.3em;
+}
+
+/* Door handles — hidden */
+.el-door__handle {
+  display: none;
+}
+
+/* Center seam — hidden to allow seamless hyphen split */
+.el-doors__seam {
+  display: none;
+}
+
+/* Door open animation */
+.el-door--left.el-door--open {
+  transform: translateX(-95%);
+}
+
+.el-door--right.el-door--open {
+  transform: translateX(95%);
+}
+
+.el-door--open ~ .el-doors__seam {
+  opacity: 0;
+}
+
+/* =================================== */
+/* ===== Car Operating Panel (COP) === */
+/* =================================== */
+
+.el-cop {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.el-cop--hide {
+  opacity: 0;
+  transform: translateY(-50%) translateX(10px);
+}
+
+.el-cop__panel {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--card)) 0%,
+    hsl(var(--secondary)) 100%
+  );
+  border: 1px solid hsl(var(--border));
+  border-radius: 12px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-shadow:
+    0 4px 20px hsl(0 0% 0% / 0.1),
+    inset 0 1px 0 hsl(0 0% 100% / 0.05);
+  min-width: 80px;
+}
+
+.dark .el-cop__panel {
+  background: linear-gradient(
+    180deg,
+    hsl(0 0% 10%) 0%,
+    hsl(0 0% 7%) 100%
+  );
+  box-shadow:
+    0 4px 20px hsl(0 0% 0% / 0.4),
+    inset 0 1px 0 hsl(0 0% 100% / 0.03);
+}
+
+/* Floor buttons grid */
+.el-cop__buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.el-cop__btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid hsl(var(--border));
+  background: hsl(var(--muted));
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  padding: 0;
+}
+
+.dark .el-cop__btn {
+  background: hsl(0 0% 14%);
+  border-color: hsl(0 0% 20%);
+}
+
+.el-cop__btn-num {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: hsl(var(--muted-foreground));
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+/* Glow element inside button */
+.el-cop__btn-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Active (passed) floor buttons */
+.el-cop__btn--active {
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.15);
+}
+
+.el-cop__btn--active .el-cop__btn-num {
+  color: hsl(var(--primary));
+}
+
+.el-cop__btn--active .el-cop__btn-glow {
+  opacity: 0.15;
+}
+
+/* Current floor — bright glowing button */
+.el-cop__btn--current {
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary));
+  box-shadow:
+    0 0 12px hsl(var(--primary) / 0.5),
+    0 0 24px hsl(var(--primary) / 0.25);
+  animation: btnGlow 1s ease-in-out infinite;
+}
+
+.el-cop__btn--current .el-cop__btn-num {
+  color: hsl(var(--primary-foreground));
+}
+
+.el-cop__btn--current .el-cop__btn-glow {
+  opacity: 0.3;
+  animation: btnInnerGlow 1s ease-in-out infinite;
+}
+
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 12px hsl(var(--primary) / 0.5), 0 0 24px hsl(var(--primary) / 0.25); }
+  50% { box-shadow: 0 0 20px hsl(var(--primary) / 0.7), 0 0 40px hsl(var(--primary) / 0.35); }
+}
+
+@keyframes btnInnerGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+}
+
+/* Emergency buttons */
+.el-cop__emergency {
+  display: flex;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid hsl(var(--border));
+  width: 100%;
+  justify-content: center;
+}
+
+.el-cop__emergency-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+}
+
+.dark .el-cop__emergency-btn {
+  background: hsl(0 0% 14%);
+}
+
+/* Brand logo on COP */
+.el-cop__brand {
+  padding-top: 4px;
+}
+
+.el-cop__brand-logo {
+  height: 24px;
+  width: auto;
+  opacity: 0.7;
+}
+
+/* Floor progress text below */
+.el-loader__progress {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+/* ==================== */
+/* ===== Responsive === */
+/* ==================== */
+
+@media (max-width: 640px) {
+  .el-cop {
+    right: 12px;
+  }
+
+  .el-cop__panel {
+    padding: 14px 10px;
+    min-width: 64px;
+  }
+
+  .el-cop__btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .el-cop__btn-num {
+    font-size: 0.625rem;
+  }
+
+  .el-door-frame__floor-num {
+    font-size: 1.25rem;
+  }
+
+  .el-loader__progress {
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .el-cop__buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .el-cop {
+    right: 8px;
+  }
+}
