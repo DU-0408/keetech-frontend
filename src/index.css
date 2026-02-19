@@ -778,20 +778,52 @@ img.logo-image {
 @media (max-width: 640px) {
   .el-cop {
     right: 12px;
+    top: auto;
+    bottom: 24px;
+    transform: none;
+  }
+
+  .el-cop--hide {
+    transform: translateX(10px);
   }
 
   .el-cop__panel {
-    padding: 14px 10px;
-    min-width: 64px;
+    padding: 10px 8px;
+    min-width: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .el-cop__buttons {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
   }
 
   .el-cop__btn {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .el-cop__btn-num {
-    font-size: 0.625rem;
+    font-size: 0.6rem;
+  }
+
+  .el-cop__emergency {
+    padding-top: 0;
+    border-top: none;
+    border-left: 1px solid hsl(var(--border));
+    padding-left: 8px;
+    width: auto;
+  }
+
+  .el-cop__brand {
+    display: none;
+  }
+
+  .el-door__text {
+    font-size: clamp(0.9rem, 4vw, 1.4rem);
   }
 
   .el-door-frame__floor-num {
@@ -805,10 +837,14 @@ img.logo-image {
 
 @media (max-width: 380px) {
   .el-cop__buttons {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .el-cop {
     right: 8px;
+  }
+
+  .el-door__text {
+    font-size: 0.85rem;
   }
 }
