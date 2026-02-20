@@ -11,4 +11,4 @@ Disallow: /portal/
 Sitemap: https://keetechelevator.in/sitemap.xml
 
 # Crawl-delay (optional, uncomment if needed)
-# Crawl-delay: 10
+Crawl-delay: 10
